@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timo Algvere | Interests</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Container -->
+    <div class="max-w-4xl mx-auto p-6 md:p-10 min-h-screen flex flex-col">
+
+        <!-- Header & Navigation -->
+        <header class="flex justify-between items-center mb-12">
+            <div class="text-xl font-bold text-gray-900">
+                <!-- Link back to home page (one directory up) -->
+                <a href="../">Timo Algvere</a>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <!-- Updated links for multi-page site -->
+                    <li><a href="../cv/" class="text-gray-600 hover:text-gray-900 font-medium">CV</a></li>
+                    <li><a href="../projects/" class="text-gray-600 hover:text-gray-900 font-medium">Projects</a></li>
+                    <li><a href="./" class="text-gray-900 hover:text-gray-900 font-medium">Interests</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+
+            <!-- SECTION: Interests -->
+            <section id="interests" class="pt-10">
+                <h2 class="text-3xl font-bold text-gray-900 border-b-2 border-gray-200 pb-3 mb-6">
+                    Interests
+                </h2>
+                
+                <!-- Introduction to Hobbies -->
+                <div class="text-lg text-gray-700 leading-relaxed space-y-4 mb-12">
+                    <p>
+                        Outside of my professional and academic work, I am a passionate photographer. I enjoy capturing landscapes and urban environments, focusing on light and structure.
+                    </p>
+                    <p>
+                        This hobby complements my technical work, as it requires a keen eye for detail, composition, and patience—skills I find valuable in all areas of life. Below is a small gallery of my work.
+                    </p>
+                </div>
+
+                <!-- Photography Gallery -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Gallery</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- 
+                          Photo 1:
+                          1. Upload your photo (e.g., "photo-1.jpg") to your GitHub repo.
+                          2. Replace the src="..." with your photo's filename.
+                        -->
+                        <div class="bg-white rounded-lg shadow-md border border-gray-100 p-4">
+                            <img src="https://placehold.co/600x400/e0e0e0/555555?text=Photo+1" alt="Photography example 1" class="rounded object-cover w-full h-auto">
+                            <p class="text-center text-gray-600 text-sm mt-2">[Location or Description]</p>
+                        </div>
+
+                        <!-- Photo 2 -->
+                        <div class="bg-white rounded-lg shadow-md border border-gray-100 p-4">
+                            <img src="https://placehold.co/600x400/e0e0e0/555555?text=Photo+2" alt="Photography example 2" class="rounded object-cover w-full h-auto">
+                            <p class="text-center text-gray-600 text-sm mt-2">[Location or Description]</p>
+                        </div>
+                        
+                        <!-- Add more photos here -->
+
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 mt-24 pt-10 border-t border-gray-200">
+            &copy; 2025 Timo Algvere. All rights reserved.
+        </footer>
+
+    </div>
+
+    <!-- This script call renders the icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

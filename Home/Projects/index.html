@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timo Algvere | Projects</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Container -->
+    <div class="max-w-4xl mx-auto p-6 md:p-10 min-h-screen flex flex-col">
+
+        <!-- Header & Navigation -->
+        <header class="flex justify-between items-center mb-12">
+            <div class="text-xl font-bold text-gray-900">
+                <!-- Link back to home page (one directory up) -->
+                <a href="../">Timo Algvere</a>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <!-- Updated links for multi-page site -->
+                    <li><a href="../cv/" class="text-gray-600 hover:text-gray-900 font-medium">CV</a></li>
+                    <li><a href="./" class="text-gray-900 hover:text-gray-900 font-medium">Projects</a></li>
+                    <li><a href="../interests/" class="text-gray-600 hover:text-gray-900 font-medium">Interests</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+
+            <!-- SECTION 3: Projects -->
+            <section id="projects" class="pt-10">
+                <h2 class="text-3xl font-bold text-gray-900 border-b-2 border-gray-200 pb-3 mb-6">
+                    Projects & Work
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Project Card 1: Final Thesis -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                        <h3 class="text-xl font-semibold text-gray-900">
+                            [Title of Your Final Thesis]
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1 mb-3">
+                            Master's Thesis | [Your University Name]
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            A brief 2-3 sentence description of your thesis. What was the problem, what methods did you use (e.g., machine learning, numerical modeling), and what was the result?
+                        </p>
+                        <!-- Replace '#' with the link to your thesis PDF or publication -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-600 hover:underline">
+                            Read Thesis &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Project Card 2: Scientific Computing -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                        <h3 class="text-xl font-semibold text-gray-900">
+                            Scientific Computing Projects
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1 mb-3">
+                            GitHub Repository
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            A collection of my work in numerical modeling, data analysis, and simulations related to physics and engineering. Implemented in Python (NumPy, SciPy, Matplotlib).
+                        </p>
+                        <!-- Replace '#' with the link to your GitHub repo -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-600 hover:underline">
+                            View on GitHub &rarr;
+                        </a>
+                    </div>
+                    
+                    <!-- Project Card 3: Data Science Project -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                        <h3 class="text-xl font-semibold text-gray-900">
+                            [Data Science Project Name]
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1 mb-3">
+                            Academic Project
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Describe another key project. What was your role? What technology did you use (e.g., Pandas, Scikit-learn, TensorFlow)? What was the outcome?
+                        </p>
+                        <!-- Replace '#' with the link to your GitHub repo or project page -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-600 hover:underline">
+                            View on GitHub &rarr;
+                        </a>
+                    </div>
+                    
+                    <!-- Add more project cards as needed -->
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 mt-24 pt-10 border-t border-gray-200">
+            &copy; 2025 Timo Algvere. All rights reserved.
+        </footer>
+
+    </div>
+
+    <!-- This script call renders the icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
