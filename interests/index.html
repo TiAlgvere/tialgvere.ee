@@ -20,8 +20,14 @@
                 /* Caption should sit below the image and be centered */
                 #lightbox-caption{max-width:100%;text-align:center;color:#fff;margin-top:0.75rem;word-break:break-word}
             .lightbox-close{position:absolute;color:#fff;cursor:pointer;font-size:1.25rem;padding:8px}
-            #lightbox-prev{left:1rem;top:50%;transform:translateY(-50%)}
-            #lightbox-next{right:1rem;top:50%;transform:translateY(-50%)}
+            /* Left/right clickable zones that sit over the overlay edges */
+            .lightbox-zone{position:absolute;top:0;bottom:0;width:28%;display:flex;align-items:center;justify-content:center}
+            #lightbox-left{left:0}
+            #lightbox-right{right:0}
+            /* subtle hitbox visual inside zone */
+            .lightbox-hitbox{width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,0.06);display:block;border:1px solid rgba(255,255,255,0.06)}
+            .lightbox-hitbox:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.15)}
+            /* Close button top-right */
             #lightbox-close{right:1rem;top:1rem}
         </style>
 </head>
@@ -116,12 +122,13 @@
     <!-- This script call renders the icons -->
     <!-- Lightbox modal -->
     <div id="lightbox" class="lightbox-overlay" role="dialog" aria-hidden="true">
-        <button id="lightbox-prev" class="lightbox-close" aria-label="Previous" style="left:1rem;right:auto">&#9664;</button>
+        <!-- Left/Right clickable zones (subtle boxes) -->
+        <div id="lightbox-left" class="lightbox-zone" aria-hidden="true"><div class="lightbox-hitbox" aria-hidden="true"></div></div>
+        <div id="lightbox-right" class="lightbox-zone" aria-hidden="true"><div class="lightbox-hitbox" aria-hidden="true"></div></div>
         <div class="lightbox-content">
             <img id="lightbox-image" src="" alt="" />
             <div id="lightbox-caption" class="text-center text-sm text-white mt-3"></div>
         </div>
-        <button id="lightbox-next" class="lightbox-close" aria-label="Next" style="right:4rem">&#9654;</button>
         <button id="lightbox-close" class="lightbox-close" aria-label="Close">&times;</button>
     </div>
 
@@ -132,8 +139,8 @@
             const img = document.getElementById('lightbox-image');
             const captionEl = document.getElementById('lightbox-caption');
             const closeBtn = document.getElementById('lightbox-close');
-            const prevBtn = document.getElementById('lightbox-prev');
-            const nextBtn = document.getElementById('lightbox-next');
+            const leftZone = document.getElementById('lightbox-left');
+            const rightZone = document.getElementById('lightbox-right');
             let currentIndex = -1;
 
             function showAt(index){
@@ -167,10 +174,12 @@
             }));
 
             overlay.addEventListener('click', e => {
+                // If clicking the dark area (not on content or nav zones), close
                 if(e.target === overlay || e.target === closeBtn) close();
             });
-            prevBtn.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
-            nextBtn.addEventListener('click', e => { e.stopPropagation(); showNext(); });
+            // Click zones: left / right edges advance without closing
+            if(leftZone){ leftZone.addEventListener('click', e => { e.stopPropagation(); showPrev(); }); }
+            if(rightZone){ rightZone.addEventListener('click', e => { e.stopPropagation(); showNext(); }); }
 
             document.addEventListener('keydown', e => {
                 if(overlay.classList.contains('show')){
