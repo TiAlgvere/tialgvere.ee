@@ -10,11 +10,17 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
         <style>
             /* Simple lightbox styles */
-            .lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
+            .lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
             .lightbox-overlay.show{opacity:1;pointer-events:auto}
-            .lightbox-content{max-width:95%;max-height:95%}
-            .lightbox-content img{width:auto;height:auto;max-width:100%;max-height:100%;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.6)}
-            .lightbox-close{position:absolute;top:1rem;right:1rem;color:#fff;cursor:pointer;font-size:1.25rem}
+                /* Constrain content to viewport and force-fit image (no internal scroll)
+                    We leave some padding (80px) so controls and a small margin fit. */
+                .lightbox-content{max-width:calc(100vw - 80px);max-height:calc(100vh - 80px);overflow:hidden;display:flex;align-items:center;justify-content:center}
+                /* Image will scale to fit the available space while preserving aspect ratio */
+                .lightbox-content img{display:block;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.6);max-width:100%;max-height:100%;width:auto;height:auto}
+            .lightbox-close{position:absolute;color:#fff;cursor:pointer;font-size:1.25rem;padding:8px}
+            #lightbox-prev{left:1rem;top:50%;transform:translateY(-50%)}
+            #lightbox-next{right:1rem;top:50%;transform:translateY(-50%)}
+            #lightbox-close{right:1rem;top:1rem}
         </style>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800 antialiased">
@@ -139,12 +145,16 @@
                 currentIndex = index;
                 overlay.classList.add('show');
                 overlay.setAttribute('aria-hidden','false');
+                // Prevent background page from scrolling while lightbox is open
+                document.body.style.overflow = 'hidden';
             }
             function close(){
                 overlay.classList.remove('show');
                 overlay.setAttribute('aria-hidden','true');
                 img.src = '';
                 currentIndex = -1;
+                // Restore page scroll
+                document.body.style.overflow = '';
             }
             function showPrev(){ showAt((currentIndex - 1 + triggers.length) % triggers.length); }
             function showNext(){ showAt((currentIndex + 1) % triggers.length); }
@@ -167,6 +177,36 @@
                     if(e.key === 'ArrowRight') showNext();
                 }
             });
+
+            // --- Touch / swipe support for mobile ---
+            let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+            const swipeThreshold = 40; // pixels
+
+            overlay.addEventListener('touchstart', function(e){
+                if(!overlay.classList.contains('show')) return;
+                const t = e.touches[0];
+                touchStartX = t.clientX;
+                touchStartY = t.clientY;
+                touchStartTime = Date.now();
+            }, {passive:true});
+
+            overlay.addEventListener('touchmove', function(e){
+                // prevent page from doing a two-finger or horizontal swipe while lightbox open
+                if(overlay.classList.contains('show')) e.preventDefault();
+            }, {passive:false});
+
+            overlay.addEventListener('touchend', function(e){
+                if(!overlay.classList.contains('show')) return;
+                const touch = (e.changedTouches && e.changedTouches[0]);
+                if(!touch) return;
+                const dx = touch.clientX - touchStartX;
+                const dy = touch.clientY - touchStartY;
+                const dt = Date.now() - touchStartTime;
+                // horizontal swipe detection (ignore slight vertical movement)
+                if(Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy)){
+                    if(dx > 0) showPrev(); else showNext();
+                }
+            }, {passive:true});
         });
     </script>
 
